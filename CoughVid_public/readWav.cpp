@@ -33,7 +33,7 @@ typedef struct  WAV_HEADER
 // Function prototypes
 int getFileSize(FILE* inFile);
 
-int readWav(const char* filePath)
+float* readWavData(const char* filePath)
 {
 	wav_hdr wavHeader;
 	int headerSize = sizeof(wav_hdr), filelength = 0;
@@ -42,7 +42,7 @@ int readWav(const char* filePath)
 	if (wavFile == nullptr)
 	{
 		fprintf(stderr, "Unable to open wave file: %s\n", filePath);
-		return 1;
+		return NULL;
 	}
 
 	printf("read the header");
@@ -83,8 +83,10 @@ int readWav(const char* filePath)
 		cout << "Block align                :" << wavHeader.blockAlign << endl;
 		cout << "Data string                :" << wavHeader.Subchunk2ID[0] << wavHeader.Subchunk2ID[1] << wavHeader.Subchunk2ID[2] << wavHeader.Subchunk2ID[3] << endl;
 	}
+	float * wavData = NULL;
+	
 	fclose(wavFile);
-	return 0;
+	return wavData;
 }
 
 // find the file size

@@ -3,6 +3,6 @@
 #define READWAV_H
 
 
-int readWav(const char* waveFileName);
+float* readWavData(const char* waveFileName);
 
 #endif
