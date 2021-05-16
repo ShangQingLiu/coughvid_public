@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-#include <string>
-#include <fstream>
-#include <vector>
-#include <utility> // std::pair
-#include <stdexcept> // std::runtime_error
-#include <sstream> // std::stringstream
-=======
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
 #include <sstream>
->>>>>>> 0b1974dbcde06bbb214e9db3494d481eb499aaaf
+using namespace std;
 
 std::vector<std::pair<std::string, std::vector<int>>> read_csv(std::string filename) {
     // Reads a CSV file into a vector of <string, vector<int>> pairs where
@@ -76,18 +68,6 @@ std::vector<std::pair<std::string, std::vector<int>>> read_csv(std::string filen
     return result;
 }
 
-<<<<<<< HEAD
-int main() {
-    // Read three_cols.csv and ones.csv
-    std::vector<std::pair<std::string, std::vector<float>>> three_cols = read_csv("data.csv");
-
-
-    // Write to another file to check that this was successful
-    write_csv("three_cols_copy.csv", three_cols);
- 
-
-    return 0;
-=======
 void create()
 {
 	// file pointer
@@ -128,18 +108,16 @@ void read_record()
 	fstream fin;
 
 	// Open an existing file
-	fin.open("reportcard.csv", ios::in);
+	fin.open("data.csv", ios::in);
 
 	// Get the roll number
 	// of which the data is required
-	int rollnum, roll2, count = 0;
-	cout << "Enter the roll number "
-		<< "of the student to display details: ";
-	cin >> rollnum;
+	int rollnum, roll2, count = 20;
+	std::string::size_type sz = 32;
 
 	// Read the Data from the file
 	// as String Vector
-	vector<string> row;
+	vector<float> row;
 	string line, word, temp;
 
 	while (fin >> temp) {
@@ -159,26 +137,13 @@ void read_record()
 
 			// add all the column data
 			// of a row to a vector
-			row.push_back(word);
+			row.push_back(std::stof(word,&sz));
 		}
 
-		// convert string to integer for comparision
-		roll2 = stoi(row[0]);
-
-		// Compare the roll number
-		if (roll2 == rollnum) {
-
-			// Print the found data
-			count = 1;
-			cout << "Details of Roll " << row[0] << " : \n";
-			cout << "Name: " << row[1] << "\n";
-			cout << "Maths: " << row[2] << "\n";
-			cout << "Physics: " << row[3] << "\n";
-			cout << "Chemistry: " << row[4] << "\n";
-			cout << "Biology: " << row[5] << "\n";
-			break;
-		}
+	
 	}
+	for (auto i = row.begin(); i != row.end(); ++i)
+		std::cout << *i << ' ';
 	if (count == 0)
 		cout << "Record not found\n";
 }
@@ -188,5 +153,4 @@ int main() {
 	read_record();
 
 	return 0;
->>>>>>> 0b1974dbcde06bbb214e9db3494d481eb499aaaf
 }
